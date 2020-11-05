@@ -1,0 +1,64 @@
+body {
+    background: #D8BEE3;
+    background: -webkit-linear-gradient(top left, #D8BEE3, #8BEA9D);
+    background: -moz-linear-gradient(top left, #D8BEE3, #8BEA9D);
+    background: linear-gradient(to bottom right, #D8BEE3, #8BEA9D);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: fixed;
+    height: 140vh;
+}
+.container-produs {
+    width: 500px;
+    background: whitesmoke;
+    -webkit-box-shadow: 6px 6px 42px -11px rgba(0,0,0,0.75);
+    -moz-box-shadow: 6px 6px 42px -11px rgba(0,0,0,0.75);
+    box-shadow: 6px 6px 42px -11px rgba(0,0,0,0.75);
+    border-radius: 10px;
+    padding: 10px;
+    margin: 20px auto;
+}
+input[type=text], input[type=date], input[type=number]{
+    box-sizing: border-box;
+    display: block;
+    margin: 5px auto;
+    border: 1px solid lightgray;
+    height: 30px;
+    width: 70%;
+    border-radius: 5px;
+    outline: none;
+    padding:0 10px;
+}
+input[type=checkbox]{
+    display: block;
+    margin: 15px auto;
+}
+input[type=number]{
+    display: block;
+    margin: 15px auto;
+    text-align: center;
+}
+h3 {
+    text-align: center;
+}
+label {
+    display: block;
+    width: 100%;
+    text-align: center;
+}
+.submit,#button1, #button2 {
+    display: block;
+    margin: auto;
+    width: 200px;
+    height: 40px;
+    background-color: whitesmoke;
+    outline: none;
+    border: 2px solid lightgray;
+    border-radius: 5px;
+}
+p {
+    text-align: center;
+}
+#button1, #button2{
+   margin: 10px auto;
+}
