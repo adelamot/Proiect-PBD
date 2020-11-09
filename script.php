@@ -1,5 +1,5 @@
 <?php 
-   header("Location: ../home.php");
+   header("Location: ../index.php");
    mysql_connect('localhost', 'user', 'parola') or die (mysql_error());
    mysql_select_db('proiect1') or die (mysql_error()); 
    $query_create1=mysql_query("CREATE TABLE clienti (
@@ -32,5 +32,12 @@
    $query4=mysql_query("INSERT INTO  `proiect1`.`produse`(`IdProdus`, `Produs`, `Garantie`, `Stoc`, `ValoareUnitara`) VALUES (1,'Fujitsu Siemens Amilo Pro',1,10,2000)"); 
    $query5=mysql_query("INSERT INTO  `proiect1`.`produse`(`IdProdus`, `Produs`, `Garantie`, `Stoc`, `ValoareUnitara`) VALUES (2,'Indesit WLI1000',3,5,900)"); 
    $query6=mysql_query("INSERT INTO  `proiect1`.`produse`(`IdProdus`, `Produs`, `Garantie`, `Stoc`, `ValoareUnitara`) VALUES (3,'Gorenje RC400',3,4,1500)"); 
+  
+   //procedura stocata
+
+   if($query7=mysql_query("CREATE PROCEDURE `vinde_produs`(IN `IdProdus` INT(11), IN `Cantitate` INT(11), IN `NumarCont` VARCHAR(8)) NOT DETERMINISTIC MODIFIES SQL DATA SQL SECURITY DEFINER insert into comenzi values(NumarCont,IdProdus,Cantitate,CURRENT_DATE)")) {}
+   else {echo mysql_error($conn)."<br>"; die(); }
+   
+
    mysql_close(); 
 ?>
