@@ -40,15 +40,7 @@ for($i=0; $i<count($array2); $i++) {
     else echo mysql_error($conn)."<br>"; 
 
 }
-    if($query_drop = mysql_query("DROP TRIGGER decrementareStoc")){
-
-    }
-    else echo mysql_error($conn)."<br>";
-    if($query_trigger=mysql_query("CREATE TRIGGER decrementareStoc AFTER INSERT ON comenzi FOR EACH ROW 
-    Update `proiect1`.`produse` set produse.Stoc=produse.Stoc - NEW.Cantitate where produse.IdProdus=NEW.IdProdus")){
-
-    }
-    else echo mysql_error($conn)."<br>";
+    
 
 mysql_close(); 
 ?>

@@ -46,19 +46,20 @@ label {
     width: 100%;
     text-align: center;
 }
-.submit,#button1, #button2 {
+.submit,#button1, #button2, .mybutton {
     display: block;
     margin: auto;
-    width: 200px;
+    width: 500px;
     height: 40px;
     background-color: whitesmoke;
     outline: none;
     border: 2px solid lightgray;
     border-radius: 5px;
+    outline: none;
 }
 p {
     text-align: center;
 }
-#button1, #button2{
+#button1, #button2, .mybutton{
    margin: 10px auto;
 }
