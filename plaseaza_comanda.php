@@ -5,7 +5,7 @@
     <link rel="stylesheet" href="index.css">
 </head>
 <body> 
-<form action="script3.php" method="POST">
+<form action="inserare_comanda.php" method="POST">
     <div class="container-produs">
     <input type="text" name="nr_cont" required placeholder="Numar cont">
     <input type="text" name="nume" required placeholder="Nume">
@@ -34,5 +34,6 @@
         ?>
        <button class="submit" type="submit">GO</button>
 </form>
+
 </body>
 </html>
