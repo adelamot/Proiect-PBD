@@ -15,12 +15,13 @@ $q = "SELECT (SELECT Produs FROM Produse WHERE IdProdus = V.IdProdus)
  echo '<table style="width: 50%; margin:auto;" class="table table-striped"><thead><tr><th scope="col">Produs</th><th scope="col">Data Expirarii</th></tr></thead><tbody>';
  if($query=mysql_query($q)) {
     while($row=mysql_fetch_assoc($query)){
-        if(date_create($row['DataExpirarii']>date("d-m-Y"))) break;
+       
+        if(date_create($row['DataExpirarii']>date("Y-m-d"))) break;
         echo '<tr>
         <td>'.$row['NProdus'].'</td>
-        <td>'.date_format(date_create($row['DataExpirarii']), "d-M-Y").'</td></tr>';
+        <td>'.date_format(date_create($row['DataExpirarii']), "Y-m-d").'</td></tr>';
     }
-    echo '</td></tr></tbody></table>';
+    echo '</tbody></table>';
 } else  echo mysql_error($conn)."<br>"; 
 mysql_close();
 ?>
