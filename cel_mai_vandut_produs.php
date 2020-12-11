@@ -6,12 +6,19 @@ echo '<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="
 echo '<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>';
 echo '<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>';
 echo '</head>';
+echo '<body id="body-index">
+<video class="bg-video" autoplay muted loop>
+            <source src="video.mp4" type="video/mp4">
+            Video
+        </video> ';
 mysql_connect('localhost', 'user', 'parola') or die (mysql_error());
 mysql_select_db('proiect1') or die (mysql_error());
 $conn =mysql_connect('localhost', 'user', 'parola');
+//Selecteaza id produs si nume
 $q = "SELECT IdProdus,Produs FROM Produse";
 $max=0;
  if($query=mysql_query($q)) {
+     //le parcurgem pe toate
     while($row=mysql_fetch_assoc($query)){
         $query2 = "SELECT * FROM comenzi WHERE IdProdus='".$row['IdProdus']."'";
         $cnt=0;
@@ -27,7 +34,8 @@ $max=0;
     }
 } else  echo mysql_error($conn)."<br>"; 
 if($max > 0 )
-    echo'<div class="container-produs">Cel mai vandut produs din baza de date este: <b>'.$tmp.'</b></div>';
-else echo '<div class="container-produs"> Nu exista vanzari </div>';
+    echo'<div class="container control-panel" style="padding: 5%; font-size: 30px; display: block; color: wheat;">Produsul cel mai vandut: <b>'.$tmp.'</b> - a fost cumparat de '.$max.' ori.'.'</div>';
+else echo '<div class="container control-panel" style="padding: 5%; font-size: 30px; display: block; color: wheat;"> Nu exista vanzari </div>';
 mysql_close();
+echo '</body>';
 ?>

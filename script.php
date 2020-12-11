@@ -45,6 +45,7 @@
    if($query7=mysql_query("CREATE PROCEDURE `vinde_produs`(IN `IdProdus` INT(11), IN `Cantitate` INT(11), IN `NumarCont` VARCHAR(8)) NOT DETERMINISTIC MODIFIES SQL DATA SQL SECURITY DEFINER insert into comenzi values(NumarCont,IdProdus,Cantitate,CURRENT_DATE)")) {}
    else {echo mysql_error($conn)."<br>"; }
    
+   //trigger
    if($query_trigger=mysql_query("CREATE TRIGGER decrementareStoc AFTER INSERT ON comenzi FOR EACH ROW 
    Update `proiect1`.`produse` set produse.Stoc=produse.Stoc - NEW.Cantitate where produse.IdProdus=NEW.IdProdus")){
 

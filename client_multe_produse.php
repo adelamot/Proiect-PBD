@@ -6,12 +6,21 @@ echo '<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="
 echo '<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>';
 echo '<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>';
 echo '</head>';
+echo '<body id="body-index">
+<video class="bg-video" autoplay muted loop>
+            <source src="video.mp4" type="video/mp4">
+            Video
+        </video> ';
 mysql_connect('localhost', 'user', 'parola') or die (mysql_error());
 mysql_select_db('proiect1') or die (mysql_error());
+//Luam nr cont nume prenume din clienti
 $query="SELECT NumarCont, Nume, Prenume FROM Clienti";
 $max=0;
 if($result = mysql_query($query)){
     while($row=mysql_fetch_assoc($result)){
+        // Pt fiecare client luam comenzile lui din tabelul de comenzi si le numaram in cnt cantitatea vanduta
+        //in iful cu maxim comparam si vedem care client are cele mai multe produse cumparate
+        //cel care are e salvat in tmp
         $query2="SELECT * FROM comenzi WHERE NumarCont='".$row['NumarCont']."'";
         $cnt=0;
         if($row2=mysql_query($query2)){
@@ -27,6 +36,7 @@ if($result = mysql_query($query)){
 }
 if($max > 0){
     $val=0;
+    //Selectam toate comenzile si facem pretul total
     $query="SELECT * FROM comenzi WHERE NumarCont='".$tmp['NumarCont']."'";
     if($roww=mysql_query($query)){
         while($r=mysql_fetch_assoc($roww)){
@@ -36,7 +46,8 @@ if($max > 0){
             $val += (int)$row3['ValoareUnitara'] * $r['Cantitate'];
         }
     }
-    echo '<div class="container-produs">Client:'.$tmp['Nume']." ".$tmp['Prenume']."<br>Nr Produse: ".strval($max)." <br> Valoare totala: ".strval($val)."</div>";
+    //Afisam
+    echo '<div class="container control-panel" style=" width: 35%; padding: 5%; font-size: 30px; display: block; color: wheat;">Client: '.$tmp['Nume']." ".$tmp['Prenume']."<br>Numarul de produse: ".strval($max)." <br> Valoare totala: ".strval($val)." RON"."</div>";
 }   
 else echo 'Nu exista comenzi';
 mysql_close();

@@ -6,13 +6,25 @@ echo '<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="
 echo '<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>';
 echo '<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>';
 echo '</head>';
+echo '<body id="body-index">
+<video class="bg-video" autoplay muted loop>
+            <source src="video.mp4" type="video/mp4">
+            Video
+        </video> ';
+echo ' <div class="myTitle" style="top: 210px;">
+<h1>Garantie</h1>
+<img class="setting" src="warranty.png"/>
+</div>  ';
 mysql_connect('localhost', 'user', 'parola') or die (mysql_error());
 mysql_select_db('proiect1') or die (mysql_error());
 $conn =mysql_connect('localhost', 'user', 'parola');
+//Selectam coloana produsului din tabelul de produse, care are id-ul egal cu cel din tabelul de comenzi
+//Data vanzarii - data in care e vandut
+// Luam garantia din tabelul de produse (Calculam data expirarii = nr de ani de la garantie + data vanzarii)
 $q = "SELECT (SELECT Produs FROM Produse WHERE IdProdus = V.IdProdus)
  AS NProdus, DATE_ADD(V.DataVanzarii, INTERVAL ( SELECT Garantie FROM 
  Produse WHERE IdProdus=V.IdProdus) YEAR) AS DataExpirarii FROM comenzi V";
- echo '<table style="width: 50%; margin:auto;" class="table table-striped"><thead><tr><th scope="col">Produs</th><th scope="col">Data Expirarii</th></tr></thead><tbody>';
+ echo '<div class="container control-panel"><table style=" color: wheat; width: 50%; margin:auto;" class="table table-striped"><thead><tr><th scope="col">Produs</th><th scope="col">Data Expirarii</th></tr></thead><tbody>';
  if($query=mysql_query($q)) {
     while($row=mysql_fetch_assoc($query)){
        
@@ -24,4 +36,5 @@ $q = "SELECT (SELECT Produs FROM Produse WHERE IdProdus = V.IdProdus)
     echo '</tbody></table>';
 } else  echo mysql_error($conn)."<br>"; 
 mysql_close();
+echo '</div></body>';
 ?>
